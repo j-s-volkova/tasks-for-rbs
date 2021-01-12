@@ -10,7 +10,7 @@ var data = [
 document.addEventListener("DOMContentLoaded", () => {
 	// обработка нажатия на кнопку "сортировать"
 	document.getElementById("sort_btn").addEventListener("click", () => {
-		var sortedData = sortByRating(data, 0, data.length - 1);
+		var sortedData = sortByRating(data);
 		refresh(sortedData);
 	});
 
@@ -32,20 +32,21 @@ function refresh(data) {
 	});
 }
 
-// функция сортировки фильмов по рейтингу. использован алгоритм быстрой сортировки
+// функция сортировки фильмов по рейтингу. 
 function sortByRating(data, left, right) {
 	var sortedData = data.filter(d => d.rating < 100);
 	
-	sortedData.sort((a, b) => a.rating > b.rating ? 1 : -1);
-	
+	console.log(data);
     var n = sortedData.length;
-    for (var i = 0; i < n-1; i++)
-     { for (var j = 0; j < n-1-i; j++)
-        { if (sortedData[j+1] < sortedData[j])
-           { var t = sortedData[j+1]; sortedData[j+1] = sortedData[j]; sortedData[j] = t; }
+    for (var i = 0; i < n-1; i++){
+      for (var j = 0; j < n-1-i; j++){
+         if (sortedData[j+1].rating < sortedData[j].rating)
+           { var t = sortedData[j+1]; sortedData[j+1] = sortedData[j]; sortedData[j] = t; console.log(t)}
         }
-     }     
-     
+	}
+          
+	
+     console.log(sortedData);
 	return sortedData;
 }
 
