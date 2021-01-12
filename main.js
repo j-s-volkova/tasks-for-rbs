@@ -32,12 +32,50 @@ function refresh(data) {
 	});
 }
 
-// функция сортировки фильмов по году
+//функция для того, чтобы поменять местами значения у переменных. вызывается в функции partition
+function swap(items, firstIndex, secondIndex){
+    const temp = items[firstIndex];
+    items[firstIndex] = items[secondIndex];
+    items[secondIndex] = temp;
+}
+
+//вспомогательная функция для быстрой сортировки в функции sortByRating. функция-разделитель.
+function partition(items, left, right) {
+    var pivot   = items[Math.floor((right + left) / 2)],
+        i       = left,
+        j       = right;
+    while (i <= j) {
+        while (items[i] < pivot) {
+            i++;
+        }
+        while (items[j] > pivot) {
+            j--;
+        }
+        if (i <= j) {
+            swap(items, i, j);
+            i++;
+            j--;
+        }
+    }
+    return i;
+}
+
+// функция сортировки фильмов по году. использован алгоритм быстрой сортировки
 function sortByRating(data) {
 	let sortedData = data;
-	alert("Отсортировано");
+	var index;
 	sortedData.sort((a, b) => a.rating > b.rating ? 1 : -1);
-
+	
+    if (sortedData.length > 1) {
+        index = partition(sortedData, left, right);
+        if (left < index - 1) {
+            quickSort(sortedData, left, index - 1);
+        }
+        if (index < right) {
+            quickSort(sortedData, index, right);
+        }
+    }
+    
 	return sortedData;
 }
 
