@@ -34,11 +34,11 @@ function refresh(data) {
 
 // функция сортировки фильмов по году
 function sortByRating(data) {
-	let sortedData = [];
+	let sortedData = data;
+	alert("Отсортировано");
+	sortedData.sort((a, b) => a.rating > b.rating ? 1 : -1);
 
-	sortedData.sort(byField('rating'));
-
-	return sortedData[];
+	return sortedData;
 }
 
 // функция очищения контейнера фильмов
@@ -59,7 +59,7 @@ function createElement(item) {
 	divYear.innerHTML = item.year;
 
 	// ячейка рейтинга фильма
-	var divRaiting = document.createElement('div');
+	var divRating = document.createElement('div');
 	divRating.className = "item-rating";
 	divRating.innerHTML = item.rating;
 
@@ -68,6 +68,7 @@ function createElement(item) {
 	divItemContainer.className = "row item disable-selection";
 	divItemContainer.appendChild(divTitle);
 	divItemContainer.appendChild(divYear);
+	divItemContainer.appendChild(divRating);
 	divItemContainer.id = 'film_' + item.id;
 
 	return divItemContainer;

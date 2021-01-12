@@ -11,7 +11,12 @@
     width: 100px;
 }
 
-/* .item-rating TODO ... */
+.item-rating {
+	text-align: center;
+    width: 200px;
+	color: red;
+	font: bold italic 110% serif;
+}
 
 .container {
     display: inline-block;
