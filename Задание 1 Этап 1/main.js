@@ -10,7 +10,7 @@ var data = [
 document.addEventListener("DOMContentLoaded", () => {
 	// обработка нажатия на кнопку "сортировать"
 	document.getElementById("sort_btn").addEventListener("click", () => {
-		let sortedData = sortByRating(data);
+		var sortedData = sortByRating(data, 0, data.length - 1);
 		refresh(sortedData);
 	});
 
@@ -20,62 +20,32 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 
 	// первичное отображение данных
-	refresh(data)
+	refresh(data);
 });
 
 // функция обновления данных в контейнере
 function refresh(data) {
-	clear()
+	clear();
 
 	data.forEach(item => {
 		document.getElementById('films').appendChild(createElement(item))
 	});
 }
 
-//функция для того, чтобы поменять местами значения у переменных. вызывается в функции partition
-function swap(items, firstIndex, secondIndex){
-    const temp = items[firstIndex];
-    items[firstIndex] = items[secondIndex];
-    items[secondIndex] = temp;
-}
-
-//вспомогательная функция для быстрой сортировки в функции sortByRating. функция-разделитель.
-function partition(items, left, right) {
-    var pivot   = items[Math.floor((right + left) / 2)],
-        i       = left,
-        j       = right;
-    while (i <= j) {
-        while (items[i] < pivot) {
-            i++;
-        }
-        while (items[j] > pivot) {
-            j--;
-        }
-        if (i <= j) {
-            swap(items, i, j);
-            i++;
-            j--;
-        }
-    }
-    return i;
-}
-
-// функция сортировки фильмов по году. использован алгоритм быстрой сортировки
-function sortByRating(data) {
-	let sortedData = data;
-	var index;
+// функция сортировки фильмов по рейтингу. использован алгоритм быстрой сортировки
+function sortByRating(data, left, right) {
+	var sortedData = data.filter(d => d.rating < 100);
+	
 	sortedData.sort((a, b) => a.rating > b.rating ? 1 : -1);
 	
-    if (sortedData.length > 1) {
-        index = partition(sortedData, left, right);
-        if (left < index - 1) {
-            quickSort(sortedData, left, index - 1);
+    var n = sortedData.length;
+    for (var i = 0; i < n-1; i++)
+     { for (var j = 0; j < n-1-i; j++)
+        { if (sortedData[j+1] < sortedData[j])
+           { var t = sortedData[j+1]; sortedData[j+1] = sortedData[j]; sortedData[j] = t; }
         }
-        if (index < right) {
-            quickSort(sortedData, index, right);
-        }
-    }
-    
+     }     
+     
 	return sortedData;
 }
 
