@@ -1,0 +1,44 @@
+.item {
+    cursor: pointer;
+}
+
+.item-title {
+    width: 200px;
+    font: bold italic 110% serif;
+}
+
+.item-count {
+    text-align: center;
+    color: blue;
+    width: 100px;
+    font: bold italic 110% serif;
+}
+
+.item-price {
+    text-align: center;
+    width: 200px;
+    color: green;
+    font: bold italic 110% serif;
+}
+
+.container {
+    display: inline-block;
+}
+
+.row {
+    margin-bottom: 5px;
+    display: flex;
+}
+
+.disable-selection {
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer */
+    -khtml-user-select: none;
+    /* KHTML browsers (e.g. Konqueror) */
+    -webkit-user-select: none;
+    /* Chrome, Safari, and Opera */
+    -webkit-touch-callout: none;
+    /* Disable Android and iOS callouts*/
+}
