@@ -1,0 +1,29 @@
+.styleStore .webix_hcell {
+    background: #009966;
+    color: white;
+    font-weight: bold;
+}
+
+.styleStore .webix_column {
+    font-style: italic;
+    background: #ddFFdd;
+}
+
+.styleStore .webix_column>div {
+    border-color: #ddd;
+}
+
+.styleBasket .webix_hcell {
+    background: #ce409f;
+    color: white;
+    font-weight: bold;
+}
+
+.styleBasket .webix_column {
+    font-style: italic;
+    background: #f0c1e0;
+}
+
+.styleBasket .webix_column>div {
+    border-color: #ddd;
+}
